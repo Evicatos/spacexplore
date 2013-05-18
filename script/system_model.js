@@ -12,7 +12,7 @@ function Station(tradeable) {
 
 Station.prototype.visit = function(ship) {
     if (ship) {
-            ship.visit_station(this);
+        ship.visit_station(this);
     }
 };
 
@@ -21,13 +21,19 @@ function Planet(habitable) {
 }
 
 Planet.prototype.visit = function(ship) {
+    if (ship) {
+        ship.visit_planet(this);
+    }
 };
 
 function Phenomenon(dangerous) {
     this.dangerous = dangerous || false;
 }
 
-Planet.prototype.visit = function(ship) {
+Phenomenon.prototype.visit = function(ship) {
+    if (ship) {
+        ship.visit_phenomenon(this);
+    }
 };
 
 function SystemModel(x, y) {
