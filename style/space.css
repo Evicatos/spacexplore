@@ -1,0 +1,70 @@
+/* ==|== primary styles =====================================================
+   Author: TB
+   ========================================================================== */
+
+
+body 
+{  
+    margin: 0 auto;  
+    width: 750px;  
+    font-family:"Lucida Console", "Consolas", monospace;  
+    background: black; 
+    color: #00FF00; 
+} 
+canvas
+{
+	/*background-color:white;*/
+	width:100%;
+	height:100%;	
+}
+
+div.main
+{
+	float:left;
+	width:79%;
+	height:100%;
+	border-style:solid;
+	border-color:white;
+	border-width:1px;
+	margin:1px
+	
+}
+
+div.sidebar
+{
+	float: right;
+	width: 20%;
+}
+
+div.informational
+{
+	padding:10px;
+	border-style:solid;
+	border-color:#00FF00;
+	border-width:2px;
+	background-color:rgba( 204, 255, 0, 0.1);
+	-moz-radius: 10px;
+	border-radius: 10px;
+}
+
+div.measureBar
+{
+	padding:2px;
+	border-style:solid;
+	border-color:#00FF00;
+	height:10px;
+}
+div.measure25
+{
+	height:100%;
+	border-style:none;
+	background-color:#ffd700;
+	width:25%;
+}
+div.measure80
+{
+	height:100%;
+	border-style:none;
+	background-color:#ffd700;
+	width:80%;
+}

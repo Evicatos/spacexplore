@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+
+		<!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame
+		Remove this if you use the .htaccess -->
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+		<title>space</title>
+		<meta name="description" content="" />
+		<meta name="author" content="MyRoot" />
+
+		<meta name="viewport" content="width=device-width; initial-scale=1.0" />
+
+		<!-- Replace favicon.ico & apple-touch-icon.png in the root of your domain and delete these references -->
+
+		<link rel="stylesheet" href="css/space.css">
+		<script src="js/space_ui.js"> </script>
+	</head>
+
+	<body onload="OnLoad();">
+		<div class="main">
+			<canvas id="testCanvas"></canvas>
+		</div>
+		<div class="sidebar">
+			<div class="informational" id="statusBox">
+			<p class="menuHead">Status</p>
+			DateTime: 1268433
+			<br />
+			Location: ab234
+			<br />
+			Hull Integrity
+			<div class="measureBar"><div id="meter1" class="measure25"></div></div>
+			Warp Charge
+			<div class="measureBar"><div class="measure25"></div></div>
+			</div>
+			<div id="chat">
+				<form name="f">
+					<input type="text" name="pingr" value="0" />
+				</form>
+			</div>
+		</div>
+	</body>
+</html>
