@@ -29,6 +29,33 @@ var currState = {
 
 var UI = {
   
+  
+  set_mode: function(name) {
+    $("div[id^='mode_']").addClass("hidden");
+    $("#" + name).removeClass("hidden");
+  },
+  
+  keyBindings : {
+    // open ship's hold
+    105: ["Open Cargo Hold", function() { UI.set_mode("mode_cargo_hold"); }],
+    // return to navigation mode
+    110: ["Navigational Computer", function() { UI. set_mode("mode_star_system"); }],
+    // options
+    111: ["Game Options", function() { UI. set_mode("mode_gameOptions"); }],
+    
+  },
+  
+  addKeyBindings : function(){
+    var kb = "" 
+    for (var item in UI.keyBindings){
+      if (UI.keyBindings.hasOwnProperty(item)){
+        kb = kb + "<tr><td>" + UI.keyBindings[item][0] + "</td><td>" + String.fromCharCode(item) + "</td></tr>";
+      }
+    }
+    $(kb).appendTo("#key_bindings");
+   // $("#key_bindings").append($("<tr><td>Hello</td></tr>"));
+  },
+  
   setup: function() {
     $("#currDateTime").text(currState.dateTime);    
     $("#currLocation").text(currState.location);
@@ -69,6 +96,8 @@ var UI = {
     $(currState).bind("warpCharge_change", function (event){
       meterUpdater(currState.warpCharge, "warpCharge")
     });
+    
+    UI.addKeyBindings();
   },
   teardown: function() {
     $(currState).unbind("currLocation_change");
