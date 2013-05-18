@@ -68,3 +68,8 @@ div.measure80
 	background-color:#ffd700;
 	width:80%;
 }
+
+.hidden
+{
+	display:none;
+}

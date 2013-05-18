@@ -7,35 +7,35 @@
 		Remove this if you use the .htaccess -->
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-		<title>space</title>
-		<meta name="description" content="" />
-		<meta name="author" content="tom" />
+		<title>spacexplore</title>
 
 		<link rel="stylesheet" href="style/space.css">
-		<script src="script/space_ui.js"> </script>
 	</head>
 
-	<body onload="OnLoad();">
-		<div class="main">
-			<canvas id="testCanvas"></canvas>
-		</div>
+	<body >
+	  <div>
+	    <div class="main" id="star_system_mode">
+	      <canvas id="testCanvas"></canvas>
+      </div>
+	    <div class="main hidden" id="interstellar_nav_mode">Todo</div>
+	    <div class="main hidden" id="cargo_hold_mode">Todo</div>
+	    <div class="main hidden" id="crew_mode">Todo</div>
+	  </div>
 		<div class="sidebar">
 			<div class="informational" id="statusBox">
 			<p class="menuHead">Status</p>
-			DateTime: 1268433
+			DateTime: <span id="currDateTime">test</span>
 			<br />
-			Location: ab234
+			Location: <span id="currLocation"></span>
 			<br />
 			Hull Integrity
-			<div class="measureBar"><div id="meter1" class="measure25"></div></div>
+			<div class="measureBar"><div id="hullIntegrity" class="measure25"></div></div>
 			Warp Charge
-			<div class="measureBar"><div class="measure25"></div></div>
-			</div>
-			<div id="chat">
-				<form name="f">
-					<input type="text" name="pingr" value="0" />
-				</form>
+			<div class="measureBar"><div id="warpCharge" class="measure25"></div></div>
 			</div>
 		</div>
+		<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js" charset="utf-8"></script>
+    <script src="script/space_ui.js"> </script>
+    <script src="script/main.js"> </script>
 	</body>
 </html>

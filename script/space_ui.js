@@ -2,48 +2,79 @@
  * @author Tom
  */
 
-function Meter (value, elem)
-{
-	this.Element = elem;
-	this.CurrValue = value;
-	this.UpdateValue = function(newValue)
-	{
-		
-		if ((this.CurrValue != newValue) && (newValue <= 100))
-		{
-			this.Element.style.width = String(newValue) + "%";
-			if (newValue < 25)
-				this.Element.style.background = "red";
-			else if (newValue < 50)
-				this.Element.style.background = "orange";
-			else if (newValue < 75)
-				this.Element.style.background = "yellow";
-			else 
-				this.Element.style.background = "lime";
-			this.CurrValue = newValue;
-		}
-	} 
+
+var currState = {
+  setDateTime : function(val){
+    this.dateTime = val;
+    $(currState).trigger("dateTime_change");
+  },
+  setLocation : function(val){
+    this.location = val;
+    $(currState).trigger("location_change");
+  },
+  setHullIntegrity : function(val){
+    this.hullIntegrity = val;
+    $(currState).trigger("hullIntegrity_change");
+  },
+  setWarpCharge : function(val){
+    this.warpCharge = val;
+    $(currState).trigger("warpCharge_change");
+  },
+  dateTime: "123456", 
+  location: "ab123",
+  hullIntegrity: 25,
+  warpCharge: 25
+  
 }
 
-var vMeter1;
-var pinger;
-
-
-function Ping()
-{
-	
-	vMeter1.UpdateValue(vMeter1.CurrValue + 5);
-
+var UI = {
+  
+  setup: function() {
+    $("#currDateTime").text(currState.dateTime);    
+    $("#currLocation").text(currState.location);
+    
+    // bind all the things!
+    $(currState).bind("dateTime_change", function (event){
+      $("#currDateTime").text(currState.dateTime);  
+    });
+    
+    $(currState).bind("currLocation_change", function (event){
+      $("#currLocation").text(currState.location);  
+    });
+    
+    var meterUpdater = function(newValue, name){
+      if ((this.CurrValue != newValue) && (newValue <= 100))
+      {
+        $("#" + name).css('width', String(newValue) + "%");
+        if (newValue < 25) {
+          $("#" + name).css('background','red');
+        }
+        else if (newValue < 50){
+          $("#" + name).css('background','orange');
+        }
+        else if (newValue < 75){
+          $("#" + name).css('background','yellow');
+        }
+        else {
+          $("#" + name).css('background','lime');
+        }
+        this.CurrValue = newValue;
+      }
+    }
+    
+    $(currState).bind("hullIntegrity_change", function (event){
+      meterUpdater(currState.hullIntegrity, "hullIntegrity")
+    });
+    
+    $(currState).bind("warpCharge_change", function (event){
+      meterUpdater(currState.warpCharge, "warpCharge")
+    });
+  },
+  teardown: function() {
+    $(currState).unbind("currLocation_change");
+    $(currState).unbind("dateTime_change");
+    $(currState).unbind("hullIntegrity_change");
+    $(currState).unbind("warpCharge_change");
+  }  
 }
 
-
-function OnLoad()
-{
-	
-	
-	var meter1 = document.getElementById('meter1');
-	vMeter1 = new Meter(-5, meter1);
-
-	pinger = setInterval(Ping, 1000)
-	
-}
