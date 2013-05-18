@@ -1,9 +1,6 @@
 function SystemEntity(entity, x, y) {
     this.entity = entity || {};
     this.coordinates = { "x" : x || 0, "y" : y || 0 };
-    this.add_coordinates = function() {
-        return x + y;
-    };
 }
 
 function Station(tradeable) {
