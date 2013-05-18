@@ -10,6 +10,10 @@ function handle_document_ready() {
     }
   }, 2000)
 
+  $(document).keypress(function(event) {
+    if (event.charCode in UI.keyBindings)
+      UI.keyBindings[event.charCode][1]();
+   });
 }
 
 $( document ).ready(handle_document_ready());
