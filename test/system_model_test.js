@@ -10,6 +10,16 @@ function MockShip(state) {
     };
 }
 
+function MockEntityGenerator() {
+    this.generate = function() {
+        var return_array = [];
+        return_array.push(new StarSystem.Station());
+        return_array.push(new StarSystem.Planet(false, 1, 1));
+        return_array.push(new StarSystem.Phenomenon(false, 2, 2));
+        return return_array;
+    };
+}
+
 test( "StarSystem::Station", function() {
     var station = new StarSystem.Station();
     strictEqual(station.trade, false, "default trade");
@@ -41,15 +51,14 @@ test( "StarSystem::Phenomenon", function() {
 });
 
 test( "StarSystem::SystemModel", function() {
-    var sys = new StarSystem.SystemModel(1, 2);
-    strictEqual(sys.coordinates.x, 1, "system x matches");
-    strictEqual(sys.coordinates.y, 2, "system y matches");
+    var mock_generator = new MockEntityGenerator();
+
+    var sys = new StarSystem.SystemModel(1, 2, mock_generator);
+    strictEqual(sys.interstellar_coordinates.x, 1, "system x matches");
+    strictEqual(sys.interstellar_coordinates.y, 2, "system y matches");
 
     var mock_ship = new MockShip(false);
 
-    sys.entities.push(new StarSystem.Station());
-    sys.entities.push(new StarSystem.Planet(false, 1, 1));
-    sys.entities.push(new StarSystem.Phenomenon(false, 2, 2));
 
     for (var i = 0; i < sys.entities.length; i++) {
         sys.entities[i].visit(mock_ship);
